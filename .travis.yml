@@ -1,0 +1,26 @@
+language: python
+
+matrix:
+  include:
+    - python: 3.6
+      env: TOXENV=py36-test
+    - python: 3.7
+      env: TOXENV=py37-test
+    - python: 3.7
+      env: TOXENV=lint
+    - python: 3.7
+      env: TOXENV=sort
+    - python: 3.7
+      env: TOXENV=format
+    - python: 3.7
+      env: TOXENV=type
+    - python: 3.7
+      env: TOXENV=docs
+    - python: 3.7
+      env: TOXENV=metadata-release
+
+install:
+  - pip install tox==3.13.2
+
+script:
+  - tox -v

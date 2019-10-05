@@ -1,7 +1,7 @@
 """Cryptography primitives for Hypercore."""
 
 from hashlib import blake2b
-from typing import List, Optional, Tuple
+from typing import Optional, Sequence, Tuple
 
 from merkle_tree_stream import MerkleTreeNode
 from pysodium import (
@@ -16,10 +16,10 @@ from pysodium import (
 )
 
 # https://en.wikipedia.org/wiki/Merkle_tree#Second_preimage_attack
-LEAF_TYPE = bytearray([0])
-PARENT_TYPE = bytearray([1])
-ROOT_TYPE = bytearray([2])
-HYPERCORE = bytearray('hypercore', encoding='utf-8')
+LEAF_TYPE = bytes([0])
+PARENT_TYPE = bytes([1])
+ROOT_TYPE = bytes([2])
+HYPERCORE = bytes('hypercore', encoding='utf-8')
 
 
 def key_pair(seed: Optional[bytes] = None) -> Tuple[bytes, bytes]:
@@ -68,7 +68,7 @@ def data(data: bytes) -> bytes:
     return _blake2bify([LEAF_TYPE, _to_unsigned_64_int(len(data)), data])
 
 
-def leaf(leaf: MerkleTreeNode) -> str:
+def leaf(leaf: MerkleTreeNode) -> bytes:
     """The hashed digest of the leaf.
 
     :param leaf: The leaf data to be hashed
@@ -76,7 +76,7 @@ def leaf(leaf: MerkleTreeNode) -> str:
     return data(leaf.data)
 
 
-def parent(child: MerkleTreeNode, parent: MerkleTreeNode) -> str:
+def parent(child: MerkleTreeNode, parent: MerkleTreeNode) -> bytes:
     if child.index > parent.index:
         raise ValueError('Child index is greater than parent?')
 
@@ -90,7 +90,7 @@ def parent(child: MerkleTreeNode, parent: MerkleTreeNode) -> str:
     return _blake2bify(values)
 
 
-def tree(roots: List[MerkleTreeNode]) -> bytes:
+def tree(roots: Sequence[MerkleTreeNode]) -> bytes:
     """Hashed tree roots.
 
     :param roots: A list of root nodes
@@ -132,7 +132,7 @@ def _to_unsigned_64_int(num: int) -> bytes:
     return int(num).to_bytes(8, byteorder='big', signed=False)
 
 
-def _blake2bify(data: List[bytes]) -> bytes:
+def _blake2bify(data: Sequence[bytes]) -> bytes:
     """Hashed bytes from the Blake2b hash function.
 
     :param data: A list of byte values to be hashed

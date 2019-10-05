@@ -1,13 +1,18 @@
 """Cryptography primitives for Hypercore."""
 
-from typing import Optional, Tuple
+from hashlib import blake2b
+from typing import List, Optional, Tuple
 
+from merkle_tree_stream import MerkleTreeNode
 from pysodium import (
+    crypto_generichash,
+    crypto_generichash_BYTES,
     crypto_sign_detached,
     crypto_sign_keypair,
     crypto_sign_seed_keypair,
     crypto_sign_SEEDBYTES,
     crypto_sign_verify_detached,
+    randombytes,
 )
 
 # https://en.wikipedia.org/wiki/Merkle_tree#Second_preimage_attack
@@ -27,6 +32,7 @@ def key_pair(seed: Optional[bytes] = None) -> Tuple[bytes, bytes]:
             message = "'seed' argument must be of length > {}"
             raise ValueError(message.format(crypto_sign_SEEDBYTES))
         return crypto_sign_seed_keypair(seed)
+
     return crypto_sign_keypair()
 
 
@@ -50,28 +56,90 @@ def verify(message: bytes, signature: bytes, public_key: bytes) -> bool:
         crypto_sign_verify_detached(signature, message, public_key)
     except ValueError:
         return False
+
     return True
 
 
-def data(data: bytes):
-    pass
+def data(data: bytes) -> bytes:
+    """The hashed digest of data input.
+
+    :param data: The data to be hashed
+    """
+    return _blake2bify([LEAF_TYPE, _to_unsigned_64_int(len(data)), data])
 
 
-def leaf():
-    pass
+def leaf(leaf: MerkleTreeNode) -> str:
+    """The hashed digest of the leaf.
+
+    :param leaf: The leaf data to be hashed
+    """
+    return data(leaf.data)
 
 
-def parent():
-    pass
+def parent(child: MerkleTreeNode, parent: MerkleTreeNode) -> str:
+    if child.index > parent.index:
+        raise ValueError('Child index is greater than parent?')
+
+    values = [
+        PARENT_TYPE,
+        _to_unsigned_64_int(child.size + parent.size),
+        child.hash,
+        parent.hash,
+    ]
+
+    return _blake2bify(values)
 
 
-def tree():
-    pass
+def tree(roots: List[MerkleTreeNode]) -> bytes:
+    """Hashed tree roots.
+
+    :param roots: A list of root nodes
+    """
+    to_be_hashed = []
+    to_be_hashed.append(ROOT_TYPE)
+
+    for root in roots:
+        to_be_hashed.append(root.hash)
+        to_be_hashed.append(root.index)
+        to_be_hashed.append(root.size)
+
+    return _blake2bify(to_be_hashed)
 
 
-def random_bytes():
-    pass
+def random_bytes(size: int) -> bytes:
+    """Random bytes with specified length.
+
+    :param size The length of the random bytes
+    """
+    return randombytes(size)
 
 
-def discovery_key():
-    pass
+def discovery_key(public_key: bytes) -> bytes:
+    """The discovery key for a tree.
+
+    :param public_key: The public key for hashing
+    """
+    return crypto_generichash(HYPERCORE, key=public_key)
+
+
+def _to_unsigned_64_int(num: int) -> bytes:
+    """Convert an integer to unsigned 64 bit bytes.
+
+    See https://stackoverflow.com/a/45434265.
+
+    :param num: The integer to be converted
+    """
+    return int(num).to_bytes(8, byteorder='big', signed=False)
+
+
+def _blake2bify(data: List[bytes]) -> bytes:
+    """Hashed bytes from the Blake2b hash function.
+
+    :param data: A list of byte values to be hashed
+    """
+    hash_func = blake2b(digest_size=crypto_generichash_BYTES)
+
+    for _data in data:
+        hash_func.update(_data)
+
+    return hash_func.digest()

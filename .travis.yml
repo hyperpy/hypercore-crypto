@@ -1,5 +1,10 @@
 language: python
 
+addons:
+  apt:
+    packages:
+      - libsodium-dev
+
 matrix:
   include:
     - python: 3.6

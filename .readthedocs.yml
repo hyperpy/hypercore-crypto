@@ -8,6 +8,9 @@ sphinx:
   fail_on_warning: true
 
 python:
-   version: 3.7
-   install:
-      - requirements: rtd.txt
+  version: 3.7
+  install:
+  - method: pip
+    path: .
+    extra_requirements:
+      - docs

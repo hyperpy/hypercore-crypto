@@ -12,8 +12,8 @@ hypercore-crypto
    :target: https://badge.fury.io/py/hypercore-crypto
    :alt: PyPI package
 
-.. image:: https://travis-ci.com/datpy/flat-tree.svg?branch=master
-   :target: https://travis-ci.com/datpy/flat-tree
+.. image:: https://travis-ci.com/datpy/hypercore-crypto.svg?branch=master
+   :target: https://travis-ci.com/datpy/hypercore-crypto
    :alt: Travis CI result
 
 .. image:: https://readthedocs.org/projects/hypercore-crypto/badge/?version=latest

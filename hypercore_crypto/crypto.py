@@ -2,14 +2,13 @@
 
 from typing import Optional, Tuple
 
-import nacl.exceptions
-from nacl.bindings import (
-    crypto_sign,
+from pysodium import (
+    crypto_sign_detached,
     crypto_sign_keypair,
     crypto_sign_seed_keypair,
+    crypto_sign_SEEDBYTES,
+    crypto_sign_verify_detached,
 )
-from nacl.hash import blake2b
-from nacl.signing import VerifyKey
 
 # https://en.wikipedia.org/wiki/Merkle_tree#Second_preimage_attack
 LEAF_TYPE = bytearray([0])
@@ -21,23 +20,35 @@ HYPERCORE = bytearray('hypercore', encoding='utf-8')
 def key_pair(seed: Optional[bytes] = None) -> Tuple[bytes, bytes]:
     """A new public key and secret key pair.
 
-    The seed must be at least 32 characters in length.
+    :param seed: Seed value. Must be at least 32 characters in length
     """
     if seed:
+        if len(seed) < crypto_sign_SEEDBYTES:
+            message = "'seed' argument must be of length > {}"
+            raise ValueError(message.format(crypto_sign_SEEDBYTES))
         return crypto_sign_seed_keypair(seed)
     return crypto_sign_keypair()
 
 
 def sign(message: bytes, secret_key: bytes) -> bytes:
-    """Signed message from a secret key."""
-    return crypto_sign(message, secret_key)
+    """A message signature.
+
+    :param message: The message to be signed
+    :param secret_key: The secret key to use during signing
+    """
+    return crypto_sign_detached(message, secret_key)
 
 
-def verify(signed_message: bytes, signature: bytes, public_key: bytes) -> bool:
-    """Verify a signed message."""
+def verify(message: bytes, signature: bytes, public_key: bytes) -> bool:
+    """Verify an unsigned message with accompanying signature.
+
+    :param message: The unsigned message to verify
+    :param signature: The signature to be verified
+    :param public_key: The public key to use during verifying
+    """
     try:
-        VerifyKey(public_key).verify(signed_message, signature=signature)
-    except (nacl.exceptions.TypeError, nacl.exceptions.BadSignatureError):
+        crypto_sign_verify_detached(signature, message, public_key)
+    except ValueError:
         return False
     return True
 
@@ -63,8 +74,4 @@ def random_bytes():
 
 
 def discovery_key():
-    pass
-
-
-def encode_unsigned_int64():
     pass

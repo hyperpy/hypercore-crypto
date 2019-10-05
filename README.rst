@@ -29,9 +29,9 @@ hypercore-crypto
 Cryptography primitives for Hypercore
 -------------------------------------
 
-Cryptography primitives for `hypercore`_.
+Cryptography primitives for `Hypercore`_ (WIP).
 
-.. _hypercore: https://hypercore.readthedocs.io/en/latest/
+.. _Hypercore: https://hypercore.readthedocs.io/en/latest/
 
 .. _documentation:
 

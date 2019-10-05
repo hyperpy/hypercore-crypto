@@ -39,3 +39,9 @@ Documentation
 *************
 
 * https://hypercore-crypto.readthedocs.io/
+
+Mirroring
+*********
+
+* https://hack.decentral1.se/datpy/hypercore-crypto (primary)
+* https://github.com/datpy/hypercore-crypto

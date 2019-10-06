@@ -1,13 +1,9 @@
 Get started
 -----------
 
-Install `Tox`_ with:
+Install `Tox`_.
 
 .. _tox: http://tox.readthedocs.io/
-
-.. code-block:: bash
-
-    $ pip install --user tox
 
 Run tests
 ---------

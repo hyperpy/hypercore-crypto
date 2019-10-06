@@ -15,6 +15,18 @@ from pysodium import (
     randombytes,
 )
 
+__all__ = [
+    'key_pair',
+    'sign',
+    'verify',
+    'data',
+    'leaf',
+    'parent',
+    'tree',
+    'random_bytes',
+    'discovery_key',
+]
+
 # https://en.wikipedia.org/wiki/Merkle_tree#Second_preimage_attack
 LEAF_TYPE = bytes([0])
 PARENT_TYPE = bytes([1])

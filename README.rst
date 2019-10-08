@@ -4,7 +4,7 @@
 hypercore-crypto
 ****************
 
-.. image:: https://img.shields.io/badge/license-GPL-brightgreen.svg
+.. image:: https://img.shields.io/badge/license-MIT-brightgreen.svg
    :target: LICENSE
    :alt: Repository license
 

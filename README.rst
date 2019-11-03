@@ -29,22 +29,11 @@ hypercore-crypto
 Cryptography primitives for Hypercore
 -------------------------------------
 
-Cryptography primitives for `Hypercore`_ (WIP).
+Cryptography primitives for Hypercore.
 
-.. _Hypercore: https://hypercore.readthedocs.io
+Part of the `Datpy`_ project.
 
-.. _example:
-
-Example
-*******
-
-.. code-block:: python
-
-    from hypercore_crypto import key_pair, sign, verify
-
-    public_key, secret_key = key_pair()
-    signature = sign(b'hello world', secret_key)
-    verify(message, signature, public_key)
+.. _Datpy: https://datpy.decentral1.se/
 
 .. _documentation:
 
@@ -54,12 +43,3 @@ Documentation
 * `hypercore-crypto.readthedocs.io`_
 
 .. _hypercore-crypto.readthedocs.io: https://hypercore-crypto.readthedocs.io/
-
-Mirroring
-*********
-
-* `hack.decentral1.se/datpy/hypercore-crypto`_
-* `github.com/datpy/hypercore-crypto`_
-
-.. _hack.decentral1.se/datpy/hypercore-crypto: https://hack.decentral1.se/datpy/hypercore-crypto
-.. _github.com/datpy/hypercore-crypto: https://github.com/datpy/hypercore-crypto

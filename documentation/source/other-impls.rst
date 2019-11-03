@@ -1,7 +1,11 @@
 .. _other-implementations:
 
+*********************
 Other Implementations
 *********************
 
-* https://github.com/mafintosh/hypercore-crypto
-* https://github.com/datcxx/hypercore-crypto
+* `mafintosh/hypercore-crypto`_
+* `datcxx/hypercore-crypto`_
+
+.. _mafintosh/hypercore-crypto: https://github.com/mafintosh/hypercore-crypto
+.. _datcxx/hypercore-crypto: https://github.com/datcxx/hypercore-crypto

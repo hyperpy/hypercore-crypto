@@ -15,8 +15,8 @@ include = '\.pyi?$'
 [tool.towncrier]
 directory = 'changelog/'
 filename = 'CHANGELOG.rst'
-package = 'hypercore-crypto'
-package_dir = 'hypercore-crypto'
+package = 'hypercore_crypto'
+package_dir = 'hypercore_crypto'
 
   [[tool.towncrier.type]]
   directory = 'removal'

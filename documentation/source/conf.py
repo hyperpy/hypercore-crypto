@@ -1,7 +1,7 @@
 author = 'decentral1se'
 copyright = '2019, decentral1se'
 html_static_path = ['_static']
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 master_doc = 'index'
 project = 'hypercore-crypto'
 templates_path = ['_templates']

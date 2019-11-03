@@ -2,7 +2,7 @@ Hypercore_Crypto 0.0.1a2 (2019-11-03)
 =====================================
 
 Improved Documentation
----------------------
+----------------------
 
 - New Sphinx theme.
 - Add a changelog.

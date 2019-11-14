@@ -4,7 +4,15 @@ import pytest
 from merkle_tree_stream import MerkleTreeNode
 from pysodium import crypto_sign_PUBLICKEYBYTES, crypto_sign_SECRETKEYBYTES
 
-from hypercore_crypto import data, key_pair, parent, random_bytes, sign, verify
+from hypercore_crypto import (
+    data,
+    discovery_key,
+    key_pair,
+    parent,
+    random_bytes,
+    sign,
+    verify,
+)
 
 
 def test_key_pair_seed_length():
@@ -59,3 +67,7 @@ def test_parent_digest():
         _parent.hex()
         == '43563406adba8b34b133fdca32d0a458c5be769615e01df30e6535ccd3c075f0'
     )
+
+
+def test_discovery_key_generated():
+    assert discovery_key(random_bytes(32)) is not None

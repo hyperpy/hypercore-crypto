@@ -131,7 +131,7 @@ def discovery_key(public_key: bytes) -> bytes:
 
     :param public_key: The public key for hashing
     """
-    return crypto_generichash(HYPERCORE, key=public_key)
+    return crypto_generichash(HYPERCORE, k=public_key)
 
 
 def _to_unsigned_64_int(num: int) -> bytes:

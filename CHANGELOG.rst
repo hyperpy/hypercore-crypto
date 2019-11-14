@@ -1,3 +1,12 @@
+Hypercore_Crypto 0.0.1a3 (2019-11-14)
+=====================================
+
+Bug Fixes
+---------
+
+- Use the correct keyword argument when invoking ``crypto_generichash``.
+
+
 Hypercore_Crypto 0.0.1a2 (2019-11-03)
 =====================================
 

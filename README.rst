@@ -20,8 +20,8 @@ hypercore-crypto
    :target: https://hypercore-crypto.readthedocs.io/en/latest/
    :alt: Documentation status
 
-.. image:: https://img.shields.io/badge/support-maintainers-brightgreen.svg
-   :target: https://decentral1.se
+.. image:: http://img.shields.io/liberapay/patrons/decentral1se.svg?logo=liberapay
+   :target: https://liberapay.com/decentral1se
    :alt: Support badge
 
 .. _introduction:

@@ -4,7 +4,7 @@ build:
   image: latest
 
 sphinx:
-  configuration: documentation/source/conf.py
+  configuration: docs/source/conf.py
   fail_on_warning: true
 
 python:

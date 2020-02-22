@@ -20,7 +20,7 @@ code of conduct.
 
 The Datpy community works towards providing a welcoming environment where
 participants are treated with dignity and respect and are free to be
-themselves. We encourage all participants to approach the Librehosters network
+themselves. We encourage all participants to approach the Datpy network
 with an open and positive attitude, engaging constructively with others at all
 times.
 
@@ -94,7 +94,7 @@ Overseeing the code of conduct
 
 The Datpy community, composed of volunteers, oversees the
 code of conduct, including addressing all incident reports. Breaking the code
-of conduct may result in immediate expulsion from the Librehosters network.
+of conduct may result in immediate expulsion from the Datpy network.
 
 How to Report an Incident
 =========================

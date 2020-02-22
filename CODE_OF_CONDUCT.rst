@@ -106,6 +106,6 @@ If you witness an incident or are the victim of one:
 Acknowledgements
 ----------------
 
-This code of conduct is inspired by the [IFF CoC].
+This code of conduct is inspired by the `IFF CoC`_.
 
-[IFF CoC]: https://www.internetfreedomfestival.org/wiki/index.php/Code_of_Conduct
+.. _IFF CoC: https://www.internetfreedomfestival.org/wiki/index.php/Code_of_Conduct

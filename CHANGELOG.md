@@ -1,3 +1,16 @@
+# hypercore-crypto 0.0.1a4 (UNRELEASED)
+
+## Removals
+
+- Removed RTD documentation
+
+## Trivial/Internal Changes
+
+- Follow the Hypercore protocol renaming situation.
+- Migrate to git.autonomic.zone
+- Migrate CI to drone.autonomic.zone
+- Reduce package boilerplate
+
 # hypercore-crypto 0.0.1a3 (2019-11-14)
 
 ## Bug Fixes

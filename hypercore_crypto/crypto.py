@@ -16,22 +16,22 @@ from pysodium import (
 )
 
 __all__ = [
-    'key_pair',
-    'sign',
-    'verify',
-    'data',
-    'leaf',
-    'parent',
-    'tree',
-    'random_bytes',
-    'discovery_key',
+    "key_pair",
+    "sign",
+    "verify",
+    "data",
+    "leaf",
+    "parent",
+    "tree",
+    "random_bytes",
+    "discovery_key",
 ]
 
 # https://en.wikipedia.org/wiki/Merkle_tree#Second_preimage_attack
 LEAF_TYPE = bytes([0])
 PARENT_TYPE = bytes([1])
 ROOT_TYPE = bytes([2])
-HYPERCORE = bytes('hypercore', encoding='utf-8')
+HYPERCORE = bytes("hypercore", encoding="utf-8")
 
 
 def key_pair(seed: Optional[bytes] = None) -> Tuple[bytes, bytes]:
@@ -90,7 +90,7 @@ def leaf(leaf: MerkleTreeNode) -> bytes:
 
 def parent(child: MerkleTreeNode, parent: MerkleTreeNode) -> bytes:
     if child.index > parent.index:
-        raise ValueError('Child index is greater than parent?')
+        raise ValueError("Child index is greater than parent?")
 
     values = [
         PARENT_TYPE,
@@ -141,7 +141,7 @@ def _to_unsigned_64_int(num: int) -> bytes:
 
     :param num: The integer to be converted
     """
-    return int(num).to_bytes(8, byteorder='big', signed=False)
+    return int(num).to_bytes(8, byteorder="big", signed=False)
 
 
 def _blake2bify(data: Sequence[bytes]) -> bytes:

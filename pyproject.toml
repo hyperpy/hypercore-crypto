@@ -1,54 +1,11 @@
 [build-system]
 requires = [
-  'setuptools>=40.9.0',
-  'setuptools-scm',
-  'wheel',
+  "setuptools",
+  "setuptools-scm",
+  "wheel",
 ]
-build-backend = 'setuptools.build_meta'
+build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 80
-target-version = ['py36', 'py37']
-skip-string-normalization = true
-include = '\.pyi?$'
-
-[tool.towncrier]
-directory = 'changelog/'
-filename = 'CHANGELOG.rst'
-package = 'hypercore_crypto'
-package_dir = 'hypercore_crypto'
-
-  [[tool.towncrier.type]]
-  directory = 'removal'
-  name = 'Removals'
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = 'deprecation'
-  name = 'Deprecations'
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = 'feature'
-  name = 'Features'
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = 'bugfix'
-  name = 'Bug Fixes'
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = 'doc'
-  name = 'Improved Documentation'
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = 'trivial'
-  name = 'Trivial/Internal Changes'
-  showcontent = true
-
-  [[tool.towncrier.type]]
-  directory = 'announce'
-  name = 'Project announcements'
-  showcontent = true
+target-version = ["py38"]

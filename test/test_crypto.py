@@ -17,8 +17,8 @@ from hypercore_crypto import (
 
 def test_key_pair_seed_length():
     with pytest.raises(ValueError) as exception:
-        key_pair(b'world hello')
-        assert 'must be of length' in str(exception)
+        key_pair(b"world hello")
+        assert "must be of length" in str(exception)
 
 
 def test_key_pair_length():
@@ -28,7 +28,7 @@ def test_key_pair_length():
 
 
 def test_sign():
-    message = b'hello world'
+    message = b"hello world"
     _, secret_key = key_pair()
     signature = sign(message, secret_key)
     assert message not in signature
@@ -36,7 +36,7 @@ def test_sign():
 
 
 def test_verify():
-    message = b'hello world'
+    message = b"hello world"
     public_key, secret_key = key_pair()
     signature = sign(message, secret_key)
     assert verify(message, signature, public_key)
@@ -44,8 +44,8 @@ def test_verify():
 
 def test_data_digest():
     assert (
-        data(b'hello world').hex()
-        == 'ccfa4259ee7c41e411e5770973a49c5ceffb5272d6a37f2c6f2dac2190f7e2b7'
+        data(b"hello world").hex()
+        == "ccfa4259ee7c41e411e5770973a49c5ceffb5272d6a37f2c6f2dac2190f7e2b7"
     )
 
 
@@ -54,7 +54,7 @@ def test_random_bytes():
 
 
 def test_parent_digest():
-    _data = b'hello world'
+    _data = b"hello world"
     _parent = parent(
         MerkleTreeNode(
             index=0, size=11, hash=data(_data), parent=None, data=None
@@ -65,7 +65,7 @@ def test_parent_digest():
     )
     assert (
         _parent.hex()
-        == '43563406adba8b34b133fdca32d0a458c5be769615e01df30e6535ccd3c075f0'
+        == "43563406adba8b34b133fdca32d0a458c5be769615e01df30e6535ccd3c075f0"
     )
 
 

@@ -20,5 +20,6 @@ pipeline:
   build:
     image: python:${IMAGE}
     commands:
+      - apt update && apt install -y libsodium-dev
       - pip install tox
       - tox -e ${TOXENV}

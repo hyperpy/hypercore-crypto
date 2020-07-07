@@ -1,6 +1,6 @@
 """hypercore-crypto module."""
 
-from hypercore_crypto.crypto import (
+from hypercore_crypto.crypto import (  # noqa
     data,
     discovery_key,
     key_pair,
@@ -10,4 +10,4 @@ from hypercore_crypto.crypto import (
     sign,
     tree,
     verify,
-)  # noqa
+)

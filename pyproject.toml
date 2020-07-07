@@ -1,11 +1,77 @@
 [build-system]
-requires = [
-  "setuptools",
-  "setuptools-scm",
-  "wheel",
-]
-build-backend = "setuptools.build_meta"
+requires = ["poetry>=1.0.9,<2.0"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "hypercore-crypto"
+version = "0.0.1a4"
+description = "Cryptography primitives for Hypercore"
+authors = ["Decentral1se <hi@decentral1.se>"]
+maintainers = ["Decentral1se <hi@decentral1.se>"]
+license = "GPLv3"
+readme = "README.md"
+repository = "https://github.com/hyperpy/hypercore-crypto"
+keywords = ["hypercore", "hypercore-protocol"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pysodium = "^0.7.5"
+merkle-tree-stream = "^0.0.1-alpha.4"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+flake8 = "^3.8.3"
+isort = "^5.0.2"
 
 [tool.black]
 line-length = 80
 target-version = ["py38"]
+include = '\.pyi?$'
+
+[tool.isort]
+include_trailing_comma = true
+known_first_party = "hypercore_crypto"
+known_third_party = "pytest"
+line_length = 80
+multi_line_output = 3
+skip = ".venv,.tox"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist =
+    {py36,py37,py38}
+    lint
+    sort
+    format
+    type
+skip_missing_interpreters = True
+isolated_build = True
+
+[testenv]
+deps =
+  pytest
+  pytest-cov
+  pytest-mock
+commands = pytest test/ --cov={toxinidir}/hypercore_crypto/ --no-cov-on-fail {posargs}
+
+[testenv:lint]
+skipdist = True
+deps = flake8
+commands = flake8 {posargs:--max-line-length 80} hypercore_crypto/ test/
+
+[testenv:sort]
+skipdist = True
+deps = isort
+commands = isort {posargs:-c} -sp setup.cfg hypercore_crypto/ test/
+
+[testenv:format]
+skipdist = True
+deps = black
+commands = black {posargs:--check} hypercore_crypto/ test/
+
+[testenv:type]
+skipdist = True
+deps = mypy
+commands = mypy {posargs:--ignore-missing-imports} hypercore_crypto/ test/
+"""

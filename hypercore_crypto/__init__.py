@@ -1,9 +1,9 @@
 """hypercore-crypto module."""
 
-from hypercore_crypto.crypto import (  # noqa
+from hypercore_crypto.crypto import (
     data,
     discovery_key,
-    key_pair,
+    key_pair,  # noqa
     leaf,
     parent,
     random_bytes,
@@ -11,14 +11,3 @@ from hypercore_crypto.crypto import (  # noqa
     tree,
     verify,
 )
-
-try:
-    import pkg_resources
-except ImportError:
-    pass
-
-
-try:
-    __version__ = pkg_resources.get_distribution("hypercore_crypto").version
-except Exception:
-    __version__ = "unknown"

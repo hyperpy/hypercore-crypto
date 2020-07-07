@@ -63,7 +63,7 @@ commands = flake8 {posargs:--max-line-length 80} hypercore_crypto/ test/
 [testenv:sort]
 skipdist = True
 deps = isort
-commands = isort {posargs:-c} -sp setup.cfg hypercore_crypto/ test/
+commands = isort {posargs:-c} -sp hypercore_crypto/ test/
 
 [testenv:format]
 skipdist = True
